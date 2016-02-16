@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Hook that make sure the right email is used for my repositories
+#
+
+# Redirect output to stderr.
+exec 1>&2
+
+remote_url="$(git config --get remote.origin.url)"
+
+if [[ "$remote_url" == '' ]]
+then
+  echo "ERROR: Please set the origin url"
+  exit 1
+fi
+
+email="$(git config --get user.email)"
+echo "Committing with $email"
+
+if [[ $remote_url == *"ypg.com"* ]]
+then
+  if [[ $email != 'Henri.Tremblay@pj.ca' ]]
+  then
+    git config user.email 'Henri.Tremblay@pj.ca'
+    echo "ERROR: Setting email to Henri.Tremblay@pj.ca, please redo your commit"
+    exit 1
+  fi
+elif [[ $email == 'Henri.Tremblay@pj.ca' ]]
+then
+  echo "ERROR: Using YP email for an external account!"
+  exit 1
+fi
