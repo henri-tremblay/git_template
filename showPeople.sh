@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 
-user=$1
+repo=$1
 
-mkdir temp
+echo "*** $repo ***"
+git clone --bare -q $repo temp_dir
+pushd temp_dir
+git log --format='%an <%aE>' | sort -u
+popd
 
-for i in $(./listRepositories.rb $*)
-do
-    echo "*** $i ***"
-    dir="temp/$i"
-    git clone -q "git@github.com:${user}/${i}.git" $dir
-    pushd $dir
-    git log --format='%an <%aE>' | sort -u
-    popd
-done
-
-rm -rf temp
+rm -rf temp_dir

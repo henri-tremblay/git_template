@@ -19,4 +19,4 @@ git push --force --tags origin 'refs/heads/*'
 
 ## Show all authors from all repositories of a user
 
-`./showPeople.sh user_or_organization`
+`./listRepositories.rb user_or_organization | xargs -I repo ./showPeople.sh repo`

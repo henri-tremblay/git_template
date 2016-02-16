@@ -13,5 +13,5 @@ res = file.read
 res = JSON.parse(res)
 
 res.map do |s|
-  puts s['name']
+  puts s['ssh_url']
 end
