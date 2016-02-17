@@ -48,3 +48,6 @@ crashlytics.properties
 crashlytics-build.properties
 
 /temp
+
+# Ignore the mail file
+/template/hooks/mail.txt

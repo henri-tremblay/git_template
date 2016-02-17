@@ -6,7 +6,9 @@
 # Redirect output to stderr.
 exec 1>&2
 
-enterprise_email='Henri.Tremblay@pj.ca'
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+enterprise_email='$(cat $DIR/mail.txt)'
 
 remote_url="$(git config --get remote.origin.url)"
 

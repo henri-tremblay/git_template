@@ -1,9 +1,20 @@
 #!/bin/sh
 
+if [ -z "$OLD_EMAIL" ]; then
+  echo "OLD_EMAIL is unset"
+  exit 1
+fi
+
+if [ -z "$CORRECT_NAME" ]; then
+  echo "CORRECT_NAME is unset"
+  exit 1
+fi
+
+if [ -z "$CORRECT_EMAIL" ]; then
+  echo "CORRECT_EMAIL is unset"
+fi
+
 git filter-branch --env-filter '
-OLD_EMAIL="Henri.Tremblay@pj.ca"
-CORRECT_NAME="Henri Tremblay"
-CORRECT_EMAIL="henri.tremblay@gmail.com"
 if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
 then
     export GIT_COMMITTER_NAME="$CORRECT_NAME"

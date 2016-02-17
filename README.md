@@ -1,6 +1,7 @@
 # Install templates
 
-To set as default template: `install.sh`
+1. Add a `mail.txt` containing your email on one line in `template/hooks`
+2. To set as default template: `install.sh`
 
 # Tools
 
